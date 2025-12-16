@@ -1,0 +1,89 @@
+<div class="crear-presupuesto-container">
+  <h1 class="page-title">Crear Presupuesto</h1>
+
+  <div class="content-grid">
+    <!-- Lista de Presupuestos -->
+    <div class="lista-section">
+      <h2 class="section-title">Presupuestos Creados</h2>
+      
+      <div *ngIf="presupuestos.length === 0" class="empty-state">
+        <p>No hay presupuestos creados aún</p>
+      </div>
+
+      <div class="presupuestos-lista">
+        <div 
+          *ngFor="let p of presupuestos" 
+          class="presupuesto-item"
+          [ngClass]="getClaseEstado(p)">
+          <div class="presupuesto-header">
+            <h3>{{ p.nombre }}</h3>
+            <span class="mes-badge">{{ p.mes }}</span>
+          </div>
+          
+          <div class="presupuesto-amounts">
+            <div class="amount-row">
+              <span class="label">Presupuesto:</span>
+              <span class="value">₡{{ p.monto.toFixed(2) }}</span>
+            </div>
+            <div class="amount-row">
+              <span class="label">Gastado:</span>
+              <span class="value gastado">₡{{ p.gastado.toFixed(2) }}</span>
+            </div>
+            <div class="amount-row">
+              <span class="label">Saldo:</span>
+              <span class="value saldo">₡{{ (p.monto - p.gastado).toFixed(2) }}</span>
+            </div>
+          </div>
+
+          <div class="progress-bar">
+            <div 
+              class="progress-fill" 
+              [style.width.%]="obtenerPorcentajeGastado(p)">
+            </div>
+          </div>
+          <p class="progress-text">{{ obtenerPorcentajeGastado(p).toFixed(1) }}% gastado</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulario -->
+    <div class="form-section">
+      <div class="card crear-presupuesto">
+        <h2>INGRESE PRESUPUESTO</h2>
+        
+        <div *ngIf="errorPresupuesto()" class="alert alert-danger mensaje-error">
+          COMPLETE TODOS LOS CAMPOS CORRECTAMENTE
+        </div>
+
+        <div *ngIf="mensajeExito()" class="mensaje-confirmacion">
+          ¡PRESUPUESTO CREADO EXITOSAMENTE!
+        </div>
+        
+        <div class="input-group">
+          <input 
+            type="text" 
+            [(ngModel)]="presupuesto.nombre"
+            placeholder="Nombre del Presupuesto"
+          >
+        </div>
+
+        <div class="input-group">
+          <select [(ngModel)]="presupuesto.mes" class="form-select">
+            <option value="">Seleccione un mes</option>
+            <option *ngFor="let mes of meses" [value]="mes">{{ mes }}</option>
+          </select>
+        </div>
+        
+        <div class="input-group">
+          <input 
+            type="number" 
+            [(ngModel)]="presupuesto.monto"
+            placeholder="Monto Total"
+          >
+        </div>
+        
+        <button class="btn btn-primary" (click)="simularAceptar()">ACEPTAR</button>
+      </div>
+    </div>
+  </div>
+</div>

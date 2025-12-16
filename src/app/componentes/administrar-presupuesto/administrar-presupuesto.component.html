@@ -1,0 +1,83 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Agregar Gasto</h1>
+  
+  <div *ngIf="presupuestos.length === 0" class="alert alert-warning text-center">
+    Por favor, cree un presupuesto primero en la sección "Crear Presupuesto".
+  </div>
+  
+  <div *ngIf="presupuestos.length > 0">
+    <div class="administrar-gasto">
+      <h2>INGRESAR GASTO</h2>
+
+      <div *ngIf="mensaje" class="alert" [ngClass]="tipoMensaje === 'success' ? 'alert-success' : 'alert-danger'">
+        {{ mensaje }}
+      </div>
+
+      <form (submit)="agregarGasto(); $event.preventDefault()">
+        <div class="form-control-group">
+          <label for="presupuesto">Presupuesto a Utilizar *</label>
+          <select 
+            id="presupuesto" 
+            [(ngModel)]="gasto.presupuestoId" 
+            name="presupuesto"
+            required>
+            <option value="">Seleccione un presupuesto</option>
+            <option *ngFor="let p of presupuestos" [value]="p.id">
+              {{ p.nombre }} - {{ p.mes }} (Disponible: ₡{{ (p.monto - p.gastado).toFixed(2) }})
+            </option>
+          </select>
+        </div>
+
+        <div class="form-control-group" *ngIf="gasto.presupuestoId">
+          <div class="saldo-info">
+            <strong>Saldo disponible:</strong> 
+            ₡{{ obtenerSaldoDisponible(gasto.presupuestoId).toFixed(2) }}
+          </div>
+        </div>
+
+        <div class="form-control-group">
+          <label for="nombre">Nombre del Gasto *</label>
+          <input 
+            id="nombre" 
+            type="text" 
+            placeholder="Ej: Almuerzo del lunes"
+            [(ngModel)]="gasto.nombre"
+            name="nombre"
+            required>
+        </div>
+
+        <div class="form-control-group">
+          <label for="categoria">Categoría del Gasto *</label>
+          <select 
+            id="categoria" 
+            [(ngModel)]="gasto.categoria" 
+            name="categoria"
+            required>
+            <option value="">Seleccione una categoría</option>
+            <option *ngFor="let cat of categorias" [value]="cat">
+              {{ cat }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-control-group">
+          <label for="cantidad">Monto del Gasto *</label>
+          <input 
+            id="cantidad" 
+            type="number" 
+            placeholder="0"
+            [(ngModel)]="gasto.cantidad"
+            name="cantidad"
+            min="0"
+            step="0.01"
+            required>
+        </div>
+
+        <div class="button-group">
+          <button type="submit" class="btn-secondary">AGREGAR GASTO</button>
+          <button type="button" class="btn-clear" (click)="limpiarFormulario()">LIMPIAR</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

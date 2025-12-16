@@ -1,0 +1,38 @@
+<nav class="navbar" *ngIf="mostrarMenu">
+  <div class="navbar-container">
+    <div class="navbar-brand">
+      <svg width="30" height="30" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="40" r="38" stroke="white" stroke-width="4"/>
+        <text x="40" y="50" font-size="40" fill="white" text-anchor="middle" font-weight="bold">$</text>
+      </svg>
+      <span class="brand-text">FinanzApp Lite</span>
+    </div>
+
+    <button class="menu-toggle" (click)="toggleMenu()" [class.active]="menuAbierto">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="navbar-menu" [class.active]="menuAbierto">
+      <li>
+        <a routerLink="/procesos" routerLinkActive="active" (click)="cerrarMenu()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Procesos
+        </a>
+      </li>
+      <li>
+        <a routerLink="/dashboard" routerLinkActive="active" (click)="cerrarMenu()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 13H11V3H3V13ZM3 21H11V15H3V21ZM13 21H21V11H13V21ZM13 3V9H21V3H13Z" fill="currentColor"/>
+          </svg>
+          Dashboard
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

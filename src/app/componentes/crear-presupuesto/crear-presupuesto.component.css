@@ -1,0 +1,264 @@
+.crear-presupuesto-container {
+  min-height: calc(100vh - 60px);
+  padding: 30px 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.page-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Lista de Presupuestos */
+.lista-section {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #999;
+  font-style: italic;
+}
+
+.presupuestos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.presupuesto-item {
+  background: #f8f9fa;
+  border-left: 5px solid #4CAF50;
+  padding: 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.presupuesto-item.alerta {
+  border-left-color: #ff9800;
+  background: #fff8e1;
+}
+
+.presupuesto-item.agotado {
+  border-left-color: #f44336;
+  background: #ffebee;
+}
+
+.presupuesto-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.presupuesto-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.presupuesto-header h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.mes-badge {
+  background: #667eea;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.presupuesto-amounts {
+  margin: 10px 0;
+}
+
+.amount-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+.amount-row .label {
+  color: #666;
+}
+
+.amount-row .value {
+  font-weight: 600;
+  color: #333;
+}
+
+.amount-row .value.gastado {
+  color: #f44336;
+}
+
+.amount-row .value.saldo {
+  color: #4CAF50;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px 0 5px 0;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4CAF50 0%, #45a049 100%);
+  transition: width 0.3s ease;
+}
+
+.presupuesto-item.alerta .progress-fill {
+  background: linear-gradient(90deg, #ff9800 0%, #f57c00 100%);
+}
+
+.presupuesto-item.agotado .progress-fill {
+  background: linear-gradient(90deg, #f44336 0%, #d32f2f 100%);
+}
+
+.progress-text {
+  text-align: right;
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Formulario */
+.form-section {
+  display: flex;
+  align-items: start;
+}
+
+.crear-presupuesto {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background-color: #fff;
+}
+
+.crear-presupuesto h2 {
+  background-color: #D1E7DD;
+  color: rgb(25, 36, 28);
+  padding: 10px;
+  border-radius: 4px 4px 0 0;
+  margin-top: 0;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group input,
+.input-group select,
+.form-select {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #607D8B;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1.1em;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #4a6572;
+  transform: translateY(-2px);
+}
+
+.mensaje-confirmacion {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.mensaje-error {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .presupuestos-lista {
+    max-height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 1.5rem;
+  }
+  
+  .lista-section {
+    padding: 20px;
+  }
+  
+  .crear-presupuesto {
+    padding: 15px;
+  }
+}

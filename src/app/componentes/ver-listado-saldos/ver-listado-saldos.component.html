@@ -1,0 +1,25 @@
+<div class="listado-saldos card p-4">
+    <h2>Listado de Gastos</h2>
+
+    <div class="saldos-summary mb-3">
+        <div class="saldo-item presupuesto">
+            Presupuesto: {{ presupuestoTotal() | currency: 'CRC':'symbol':'1.2-2' }}
+        </div>
+        
+        <div class="saldo-item restante" [ngClass]="claseRestante()">
+            Restante: {{ presupuestoRestante() | currency: 'CRC':'symbol':'1.2-2' }}
+        </div>
+    </div>
+
+    <div *ngIf="listaGastos().length > 0; else noGastos">
+        <div *ngFor="let gasto of listaGastos()" class="gasto-row">
+            <span>{{ gasto.nombre }}</span>
+            <span class="gasto-monto">{{ gasto.cantidad | currency: 'CRC':'symbol':'1.2-2' }}</span>
+        </div>
+    </div>
+    
+    <ng-template #noGastos>
+        <p class="text-muted mt-3">No se han registrado gastos aún.</p>
+    </ng-template>
+
+</div>
