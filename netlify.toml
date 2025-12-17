@@ -1,5 +1,8 @@
+
 [build]
+  # Usamos el comando estándar de Angular para el build de producción
   command = "npm run build"
+ 
   publish = "dist/administrador-presupuestos/browser"
 
 [[redirects]]
